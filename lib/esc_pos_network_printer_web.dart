@@ -1,7 +1,10 @@
 import 'package:http/http.dart';
 
 Future<void> printReceiptUsingESCPOSNetworkPrinterOnWeb(
-    List<int> bytes, String ipAddress, int port) async {
+  List<int> bytes,
+  String ipAddress,
+  int port,
+) async {
   String escPosNetworkPrinterUrl = 'http://$ipAddress:$port';
 
   Uri url = Uri.parse(escPosNetworkPrinterUrl);
