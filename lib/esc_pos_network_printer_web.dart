@@ -1,7 +1,18 @@
-library esc_pos_network_printer_web;
+import 'package:http/http.dart';
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+Future<void> printReceiptUsingESCPOSNetworkPrinterOnWeb(
+    List<int> bytes, String ipAddress, int port) async {
+  String escPosNetworkPrinterUrl = 'http://$ipAddress:$port';
+
+  Uri url = Uri.parse(escPosNetworkPrinterUrl);
+
+  Response response = await post(
+    url,
+    body: bytes,
+    headers: {'Content-Type': 'application/octet-stream'},
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to print !');
+  }
 }
